@@ -1,5 +1,8 @@
 name: TAMA NON-KSU
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
 
@@ -25,6 +28,7 @@ jobs:
       CHAT_ID: ${{ secrets.CHAT_ID }}
       KERNEL_VER: Stardust-v1.7
       KERNEL_BRANCH: master
+      KERNEL_VARIANT: NON-KSU
       KERNEL_REPO: https://github.com/Sorayukii/stardust_kernel_sony_sdm845
       ANYKERNEL_REPO: https://github.com/Sorayukii/AnyKernel3
       CLANG_URL: https://gitlab.com/kei-space/clang/r536225.git
@@ -112,7 +116,7 @@ jobs:
         KERNEL_IMAGE=$KERNEL_IMAGE_DIR/Image.gz-dtb
         CONFIG_NAME="tama_${{ matrix.codename }}_defconfig"
         KERNEL_COMMIT_ID=$(git rev-parse --short=7 HEAD)
-        ZIP_NAME="${KERNEL_VER}_${{ matrix.codename }}-NON_KSU-$(date +%Y%m%d)-${KERNEL_COMMIT_ID}.zip"
+        ZIP_NAME="${KERNEL_VER}_${{ matrix.codename }}-${KERNEL_VARIANT}-$(date +%Y%m%d)-${KERNEL_COMMIT_ID}.zip"
         echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
         echo "LOG_FILE=$LOG_FILE" >> $GITHUB_ENV
 
@@ -154,6 +158,7 @@ jobs:
       with:
         name: ${{ matrix.codename }}-${{ env.ZIP_NAME }}
         path: ${{ env.KERNEL_DIR }}/${{ env.ZIP_NAME }}
+          ${{ env.LOG_FILE }}
 
     - name: Upload build log artifact
       if: always()
@@ -161,4 +166,43 @@ jobs:
       with:
         name: build-log-${{ matrix.codename }}
         path: ${{ env.LOG_FILE }}
+
+    - name: Upload kernel to GitHub Release
+      if: success()
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ env.KERNEL_VER }}_${{ env.KERNEL_VARIANT }}
+        name: ${{ env.KERNEL_VER }} ${{ env.KERNEL_VARIANT }}
+        body: |
+          ## Stardust Kernel — NON-KSU ##
+
+          **Target Platform**
+          - Device Family : Sony Tama
+          - SoC           : Qualcomm Snapdragon 845
+          - Architecture  : ARM64
+
+          **Build Information**
+          - Kernel Version : `${{ env.KERNEL_VER }}`
+          - Kernel Branch  : `${{ env.KERNEL_BRANCH }}`
+          - Commit Hash    : `${{ env.KERNEL_COMMIT_ID }}`
+          - Build Date     : `$(date +%Y-%m-%d)`
+          - Compiler       : Aosp Clang
+          - KSU            : ❌ Disabled (NON-KSU)
+
+          **Flash Instructions**
+          1. Flash via AnyKernel3 (TWRP / OrangeFox)
+          3. Reboot system
+
+          **Notes**
+          - This release contains **NON-KSU** builds only
+          - Each device codename has its own flashable zip
+          - Built automatically using GitHub Actions
+
+        files: |
+          ${{ env.KERNEL_DIR }}/${{ env.ZIP_NAME }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
         
