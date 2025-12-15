@@ -18,7 +18,7 @@ jobs:
       CLANG_URL: https://gitlab.com/kei-space/clang/r536225.git
       KPM_URL: https://github.com/SukiSU-Ultra/SukiSU_KernelPatch_patch/releases/latest/download/patch_linux
       KSU_URL: https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh
-      KSU_BRANCH: nongki
+      KSU_BRANCH: builtin
 
     steps:
     - name: Checkout workflow repo
@@ -47,7 +47,7 @@ jobs:
         git clone --depth=1 -b "$CODENAME" "$ANYKERNEL_REPO" AnyKernel3
         echo "ANYKERNEL_DIR=$KERNEL_DIR/AnyKernel3" >> $GITHUB_ENV
 
-    - name: Clone clang toolchain
+    - name: Clone clang
       run: |
         cd $KERNEL_DIR
         git clone --depth=1 "$CLANG_URL" clang
