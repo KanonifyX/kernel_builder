@@ -15,7 +15,8 @@ jobs:
       KERNEL_BRANCH: xxksu
       KERNEL_REPO: https://github.com/Sorayukii/stardust_kernel_sony_sdm845
       ANYKERNEL_REPO: https://github.com/Sorayukii/AnyKernel3
-      CLANG_URL: https://gitlab.com/XSans0/weebx-clang.git
+      CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
+      CLANG_BRANCH: 17
       KSU_URL: https://raw.githubusercontent.com/backslashxx/KernelSU/master/kernel/setup.sh
       KSU_BRANCH: master
 
@@ -49,14 +50,14 @@ jobs:
     - name: Clone clang
       run: |
         cd $KERNEL_DIR
-        git clone --depth=1 "$CLANG_URL" -b release/15-gr clang
+        git clone --depth=1 "$CLANG_URL" -b "$CLANG_BRANCH" clang
         echo "CLANG_DIR=$KERNEL_DIR/clang" >> $GITHUB_ENV
         
     - name: Set up XXKSU
       run: |
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
-        sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32284/g' KernelSU/kernel/Makefile
+        sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32286/g' KernelSU/kernel/Makefile
 
     - name: Generate defconfig
       run: |
