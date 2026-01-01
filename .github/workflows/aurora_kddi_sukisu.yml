@@ -18,7 +18,7 @@ jobs:
       CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
       CLANG_BRANCH: 17
       KPM_URL: https://github.com/SukiSU-Ultra/SukiSU_KernelPatch_patch/releases/latest/download/patch_linux
-      KSU_URL: https://raw.githubusercontent.com/Sorayukii/SukiSU-Ultra/main/kernel/setup.sh
+      KSU_URL: https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh
       KSU_BRANCH: builtin
 
     steps:
