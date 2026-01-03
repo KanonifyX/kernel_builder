@@ -16,7 +16,7 @@ jobs:
       KERNEL_REPO: https://github.com/Sorayukii/stardust_kernel_sony_sdm845
       ANYKERNEL_REPO: https://github.com/Sorayukii/AnyKernel3
       CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
-      CLANG_BRANCH: 17
+      CLANG_BRANCH: 15
 
     steps:
     - name: Checkout workflow repo
@@ -114,7 +114,7 @@ jobs:
         mkdir -p "$OUT_DIR"
 
         make O="$OUT_DIR" ARCH=arm64 "$CONFIG_NAME"
-        make -j$(nproc) O="$OUT_DIR" ARCH=arm64 \
+        make -j$(nproc --all) O="$OUT_DIR" ARCH=arm64 \
           CC=clang LD=ld.lld AR=llvm-ar AS=llvm-as NM=llvm-nm \
           OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip \
           CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
