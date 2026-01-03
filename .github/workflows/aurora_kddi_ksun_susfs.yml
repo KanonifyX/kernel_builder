@@ -58,8 +58,8 @@ jobs:
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
         cd KernelSU*
-        git fetch https://github.com/sidex15/KernelSU-Next legacy
-        git cherry-pick 2838d9698a1fe4d9c51a412dce9d64067cb71660
+        wget https://github.com/sidex15/KernelSU-Next/commit/2838d9698a1fe4d9c51a412dce9d64067cb71660.patch
+        patch -p1 <2838d9698a1fe4d9c51a412dce9d64067cb71660.patch
 
     - name: Generate defconfig
       run: |
