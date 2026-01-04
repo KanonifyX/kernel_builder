@@ -58,7 +58,7 @@ jobs:
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
         cd KernelSU*
-        wget https://github.com/Sorayukii/KernelSU-Next/commit/a1eb84f4ea93f8ad28fab45ad67c8ef7a0f404e8
+        wget https://github.com/Sorayukii/KernelSU-Next/commit/a1eb84f4ea93f8ad28fab45ad67c8ef7a0f404e8.patch
         patch -p1 <a1eb84f4ea93f8ad28fab45ad67c8ef7a0f404e8.patch
 
     - name: Generate defconfig
