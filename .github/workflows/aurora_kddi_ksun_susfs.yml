@@ -35,6 +35,11 @@ jobs:
           libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev \
           libsqlite3-dev make gcc pigz python3 cpio lld
 
+    - name: Setup github account
+      run: |
+        git config --global user.name "Sorayukii"
+        git config --global user.name "sorayukii69@gmail.com"
+
     - name: Clone kernel source
       run: |
         git clone --depth=1 "$KERNEL_URL" -b "$KERNEL_BRANCH" kernel
@@ -58,8 +63,8 @@ jobs:
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
         cd KernelSU*
-        wget https://github.com/Sorayukii/KernelSU-Next/commit/a1eb84f4ea93f8ad28fab45ad67c8ef7a0f404e8.patch
-        patch -p1 <a1eb84f4ea93f8ad28fab45ad67c8ef7a0f404e8.patch
+        git fetch https://github.com/Sorayukii/KernelSU-Next susfs-main
+        git reset --hard 369d2828f08be535fdfa03620708dd374060c28e
 
     - name: Generate defconfig
       run: |
