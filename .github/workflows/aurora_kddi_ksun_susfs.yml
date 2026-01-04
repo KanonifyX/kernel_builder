@@ -16,7 +16,7 @@ jobs:
       KERNEL_BRANCH: ksun-susfs
       CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
       CLANG_BRANCH: 15
-      KSU_URL: https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh
+      KSU_URL: https://raw.githubusercontent.com/Sorayukii/KernelSU-Next/legacy/kernel/setup.sh
       KSU_BRANCH: legacy
       ANYKERNEL_URL: https://github.com/Sorayukii/AnyKernel3
 
