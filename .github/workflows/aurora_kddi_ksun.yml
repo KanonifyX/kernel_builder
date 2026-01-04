@@ -64,7 +64,7 @@ jobs:
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
         cd KernelSU*
         git fetch https://github.com/Sorayukii/KernelSU-Next legacy
-        git reset --hard 80b8f2a1972e2c9c8d26c24741d7c2c79fdbc25a
+        git reset --hard 632ac79fb8c6e1cbb3f21ceb0377e127b33566c7
 
     - name: Generate defconfig
       run: |
