@@ -24,7 +24,7 @@ jobs:
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
       KERNEL_VER: Stardust-v1.8
-      KERNEL_BRANCH: susfs-scope-minimized-hooks
+      KERNEL_BRANCH: scope-minimized-hooks
       CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
       CLANG_BRANCH: 17
       KSU_URL: https://raw.githubusercontent.com/Sorayukii/KernelSU-Next/dev/kernel/setup.sh
