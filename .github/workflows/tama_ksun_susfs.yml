@@ -1,4 +1,4 @@
-name: TAMA KSU-Next
+name: TAMA KSU-Next SUSFS
 
 on:
   workflow_dispatch:
