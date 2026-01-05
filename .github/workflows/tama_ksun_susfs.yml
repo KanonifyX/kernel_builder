@@ -56,7 +56,7 @@ jobs:
     - name: Clone AnyKernel3
       run: |
         cd $KERNEL_DIR
-        git clone --depth=1 -b "${{ matrix.codename }}" "$ANYKERNEL_REPO" AnyKernel3
+        git clone --depth=1 -b "${{ matrix.codename }}" "$ANYKERNEL_URL" AnyKernel3
         echo "ANYKERNEL_DIR=$KERNEL_DIR/AnyKernel3" >> $GITHUB_ENV
 
     - name: Clone clang
