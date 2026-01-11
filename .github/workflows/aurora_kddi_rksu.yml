@@ -34,6 +34,8 @@ jobs:
           libarchive-tools gcc-aarch64-linux-gnu libssl-dev libffi-dev \
           libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev \
           libsqlite3-dev make gcc pigz python3 cpio lld
+        git config --global user.name "Sorayukii"
+        git config --global user.email "sorayukii69@gmail.com"
 
     - name: Clone kernel source
       run: |
