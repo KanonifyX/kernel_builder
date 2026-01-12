@@ -42,6 +42,7 @@ jobs:
         git clone "$KERNEL_URL" -b "$KERNEL_BRANCH" kernel
         cd kernel
         git reset --hard 14ec4c921f995bf0a7efdf213cc5798976b01cc6
+        git cherry-pick 1cdf18c97f92272dcf1447929b060284168bd10e..d8705693b9b39837ccd65e03fa45a7bde81696cb
         git cherry-pick d8705693b9b39837ccd65e03fa45a7bde81696cb
         echo "KERNEL_DIR=$(pwd)" >> $GITHUB_ENV
 
