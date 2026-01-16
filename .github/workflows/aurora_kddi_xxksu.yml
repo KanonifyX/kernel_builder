@@ -18,7 +18,7 @@ jobs:
       CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
       CLANG_BRANCH: 17
       KSU_URL: https://raw.githubusercontent.com/backslashxx/KernelSU/master/kernel/setup.sh
-      KSU_BRANCH: staging
+      KSU_BRANCH: master
 
     steps:
     - name: Checkout workflow repo
