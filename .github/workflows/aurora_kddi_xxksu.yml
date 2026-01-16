@@ -18,7 +18,7 @@ jobs:
       CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
       CLANG_BRANCH: 17
       KSU_URL: https://raw.githubusercontent.com/backslashxx/KernelSU/master/kernel/setup.sh
-      KSU_BRANCH: master
+      KSU_BRANCH: staging
 
     steps:
     - name: Checkout workflow repo
@@ -57,7 +57,7 @@ jobs:
       run: |
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
-        sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32307/g' KernelSU/kernel/Makefile
+        sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32317/g' KernelSU/kernel/Makefile
 
     - name: Generate defconfig
       run: |
