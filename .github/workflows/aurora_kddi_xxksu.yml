@@ -12,7 +12,7 @@ jobs:
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
       KERNEL_VER: Stardust-v2.0rc4
-      KERNEL_BRANCH: xxtest5
+      KERNEL_BRANCH: xxksu-susfs
       KERNEL_REPO: https://github.com/Sorayukii/stardust_kernel_sony_sdm845
       ANYKERNEL_REPO: https://github.com/Sorayukii/AnyKernel3
       CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
@@ -58,6 +58,9 @@ jobs:
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
         sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32317/g' KernelSU/kernel/Makefile
+        cd KernelSU
+        wget https://github.com/Sorayukii/XXKernelSU/commit/864c66e2a2cfbb61e46def322d88b7dac4ea804b.patch
+        patch -p1 <864c66e2a2cfbb61e46def322d88b7dac4ea804b.patch
 
     - name: Generate defconfig
       run: |
