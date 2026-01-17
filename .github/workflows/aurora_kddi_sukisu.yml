@@ -35,6 +35,8 @@ jobs:
           libarchive-tools gcc-aarch64-linux-gnu libssl-dev libffi-dev \
           libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev \
           libsqlite3-dev make gcc pigz python3 cpio lld
+        git config --global user.name "temp"
+        git config --global user.email "temp.@jembut.sh"
 
     - name: Clone kernel source
       run: |
@@ -58,6 +60,8 @@ jobs:
       run: |
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
+        cd KernelSU
+        git reset --hard a1c52787629b106945b438002b5ff8788c8f4b37
 
     - name: Generate defconfig
       run: |
