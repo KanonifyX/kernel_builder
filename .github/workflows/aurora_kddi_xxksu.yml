@@ -34,6 +34,8 @@ jobs:
           libarchive-tools gcc-aarch64-linux-gnu libssl-dev libffi-dev \
           libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev \
           libsqlite3-dev make gcc pigz python3 cpio lld
+        git config --global user.name "Sorayukii"
+        git config --global user.email "sorayukii69@gmail.com"
 
     - name: Clone kernel source
       run: |
@@ -59,9 +61,8 @@ jobs:
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
         sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32317/g' KernelSU/kernel/Makefile
         cd KernelSU
-        wget https://github.com/Sorayukii/XXKernelSU/commit/864c66e2a2cfbb61e46def322d88b7dac4ea804b.patch
-        patch -p1 <864c66e2a2cfbb61e46def322d88b7dac4ea804b.patch
-
+        git fetch https://github.com/Sorayukii/XXKernelSU susfs-test
+        git reset --hard 014b43403ff430f3a07f0a1091d88b2b81a5685e
     - name: Generate defconfig
       run: |
         cd $KERNEL_DIR
