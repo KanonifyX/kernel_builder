@@ -62,7 +62,8 @@ jobs:
         sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32317/g' KernelSU/kernel/Makefile
         cd KernelSU
         git fetch https://github.com/Sorayukii/XXKernelSU susfs-test
-        git reset --hard 014b43403ff430f3a07f0a1091d88b2b81a5685e
+        git reset --hard c629e10e4d578ca0b1f8ad9560a0ebb5c4c2f653
+    
     - name: Generate defconfig
       run: |
         cd $KERNEL_DIR
