@@ -11,7 +11,7 @@ jobs:
       CODENAME: aurora_kddi
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
-      KERNEL_VER: Stardust-v2.0rc4
+      KERNEL_VER: Stardust-v2.0.1rc2
       KERNEL_BRANCH: master
       KERNEL_REPO: https://github.com/Sorayukii/stardust_kernel_sony_sdm845
       ANYKERNEL_REPO: https://github.com/Sorayukii/AnyKernel3
@@ -41,7 +41,6 @@ jobs:
       run: |
         git clone "$KERNEL_REPO" -b "$KERNEL_BRANCH" kernel
         cd kernel
-        git reset --hard 4668eeae6c557256399688ed12336abb8c48ecad
         echo "KERNEL_DIR=$(pwd)" >> $GITHUB_ENV
 
     - name: Clone AnyKernel3
