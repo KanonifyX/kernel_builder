@@ -59,7 +59,7 @@ jobs:
       run: |
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
-        sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32317/g' KernelSU/kernel/Makefile
+        sed -i 's/-DKSU_VERSION=[0-9]\+/-DKSU_VERSION=32320/g' KernelSU/kernel/Makefile
     
     - name: Generate defconfig
       run: |
@@ -129,6 +129,7 @@ jobs:
           CC=clang LD=ld.lld AR=llvm-ar AS=llvm-as \
           NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip \
           CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+          KCFLAGS="-mllvm -enable-ml-inliner=release \
           2>&1 | tee -a "$LOG_FILE"
 
         BUILD_RESULT=${PIPESTATUS[0]}
