@@ -70,12 +70,14 @@ jobs:
       run: |
         cd $KERNEL_DIR
         curl -LSs "$KSU_URL" | bash -s $KSU_BRANCH
+        
 
     - name: Generate defconfig
       run: |
         cd $KERNEL_DIR
         CONFIG_NAME="tama_${{ matrix.codename }}_defconfig"
         DEFCONFIG_PATH="arch/arm64/configs/$CONFIG_NAME"
+        echo "CONFIG_KSU_TAMPER_SYSCALL_TABLE=y" >> "${DEFCONFIG_PATH}"
         sed -i "s/CONFIG_LOCALVERSION=\"-perf\"/CONFIG_LOCALVERSION=\"-$KERNEL_VER\"/" "$DEFCONFIG_PATH"
         make O=out ARCH=arm64 "$CONFIG_NAME"
         mv out/.config "$DEFCONFIG_PATH"
