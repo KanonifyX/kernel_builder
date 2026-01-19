@@ -52,11 +52,11 @@ jobs:
     - name: Download and extract Clang toolchain 
       run: | 
         cd $KERNEL_DIR 
-        wget -O clang.tar.gz "$CLANG_URL" 
         mkdir -p clang 
-        tar -xf clang.tar.gz -C clang 
+        curl -LSs "$CLANG_URL" -o clang.tar.gz
+        tar -xzf clang.tar.gz -C clang 
         rm -f clang.tar.gz 
-        echo "CLANG_DIR=$KERNEL_DIR/clang" >> $GITHUB_ENV
+        echo "CLANG_DIR=$(pwd)/clang" >> $GITHUB_ENV
         
     - name: Set up XXKSU
       run: |
