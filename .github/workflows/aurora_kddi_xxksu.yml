@@ -37,6 +37,12 @@ jobs:
         git config --global user.name "Sorayukii"
         git config --global user.email "sorayukii69@gmail.com"
 
+    - name: Clone kernel source
+      run: |
+        git clone --depth=1 "$KERNEL_URL" -b "$KERNEL_BRANCH" kernel
+        cd kernel
+        echo "KERNEL_DIR=$(pwd)" >> $GITHUB_ENV
+
     - name: Clone AnyKernel3
       run: |
         cd $KERNEL_DIR
