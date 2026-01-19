@@ -37,6 +37,12 @@ jobs:
         git config --global user.name "Sorayukii"
         git config --global user.email "sorayukii69@gmail.com"
 
+    - name: Clone AnyKernel3
+      run: |
+        cd $KERNEL_DIR
+        git clone --depth=1 -b "$CODENAME" "$ANYKERNEL_REPO" AnyKernel3
+        echo "ANYKERNEL_DIR=$KERNEL_DIR/AnyKernel3" >> $GITHUB_ENV
+
     - name: Download and extract Clang toolchain 
       run: | 
         cd $KERNEL_DIR 
@@ -44,18 +50,6 @@ jobs:
         mkdir -p clang 
         tar -xf clang.tar.gz -C clang 
         rm -f clang.tar.gz 
-        echo "CLANG_DIR=$KERNEL_DIR/clang" >> $GITHUB_ENV
-
-    - name: Clone AnyKernel3
-      run: |
-        cd $KERNEL_DIR
-        git clone --depth=1 -b "$CODENAME" "$ANYKERNEL_REPO" AnyKernel3
-        echo "ANYKERNEL_DIR=$KERNEL_DIR/AnyKernel3" >> $GITHUB_ENV
-
-    - name: Clone clang
-      run: |
-        cd $KERNEL_DIR
-        git clone --depth=1 "$CLANG_URL" -b "$CLANG_BRANCH" clang
         echo "CLANG_DIR=$KERNEL_DIR/clang" >> $GITHUB_ENV
         
     - name: Set up XXKSU
