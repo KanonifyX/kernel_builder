@@ -39,7 +39,7 @@ jobs:
 
     - name: Clone kernel source
       run: |
-        git clone --depth=1 "$KERNEL_REPO" -b "$KERNEL_BRANCH" kernel
+        git clone "$KERNEL_REPO" -b "$KERNEL_BRANCH" kernel
         cd kernel
         git reset --hard 7022b8fc7499d8b2b02713f44df197fc17c96d6a
         echo "KERNEL_DIR=$(pwd)" >> $GITHUB_ENV
