@@ -23,9 +23,9 @@ jobs:
     env:
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
-      KERNEL_VER: Stardust-v2.0.1
+      KERNEL_VER: Stardust-v2.1.0
       KERNEL_URL: https://github.com/Sorayukii/stardust_kernel_sony_sdm845
-      KERNEL_BRANCH: ksun-susfs
+      KERNEL_BRANCH: ksun
       CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
       CLANG_BRANCH: 17
       KSU_URL: https://raw.githubusercontent.com/Sorayukii/KernelSU-Next/dev/kernel/setup.sh
@@ -75,6 +75,8 @@ jobs:
         cd $KERNEL_DIR
         CONFIG_NAME="tama_${{ matrix.codename }}_defconfig"
         DEFCONFIG_PATH="arch/arm64/configs/$CONFIG_NAME"
+        echo "CONFIG_KSU=y" >> "${DEFCONFIG_PATH}"
+        echo "CONFIG_KSU_SUSFS=y" >> "${DEFCONFIG_PATH}"
         sed -i "s/CONFIG_LOCALVERSION=\"-perf\"/CONFIG_LOCALVERSION=\"-$KERNEL_VER\"/" "$DEFCONFIG_PATH"
         make O=out ARCH=arm64 "$CONFIG_NAME"
         mv out/.config "$DEFCONFIG_PATH"
