@@ -91,11 +91,18 @@ jobs:
             local ESCAPED_NAME=$(escape_markdown_v2 "$FILE_NAME")
             local CAPTION="\`$ESCAPED_NAME\`"
 
-            curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendDocument" \
-                -F "chat_id=$CHAT_ID" \
-                -F "document=@$FILE_PATH" \
-                -F "caption=$CAPTION" \
-                -F "parse_mode=MarkdownV2"
+            RESPONSE=$(curl -s -w "%{http_code}" -o response.json -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendDocument" \
+            -F "chat_id=$CHAT_ID" \
+            -F "document=@$FILE_PATH" \
+            -F "caption=$CAPTION" \
+            -F "parse_mode=MarkdownV2")
+            
+            HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)
+            if [ "$HTTP_CODE" -ne 200 ]; then
+               ERROR_MESSAGE="❌ Send file failed! HTTP code: $HTTP_CODE"
+               send_telegram_message "$ERROR_MESSAGE"
+               exit 1
+            fi
         }
 
         stop_handler() {
