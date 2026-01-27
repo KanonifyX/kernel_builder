@@ -104,7 +104,7 @@ jobs:
             -F "chat_id=$CHAT_ID" \
             -F "document=@$FILE_PATH" \
             -F "caption=$CAPTION" \
-            -F "parse_mode=MarkdownV2"
+            -F "parse_mode=MarkdownV2")
             
             HTTP_CODE=$(echo "$RESPONSE" | tail -n 1)
             if [ "$HTTP_CODE" -ne 200 ]; then
