@@ -39,8 +39,9 @@ jobs:
 
     - name: Clone kernel source
       run: |
-        git clone --depth=1 "$KERNEL_REPO" -b "$KERNEL_BRANCH" kernel
+        git clone "$KERNEL_REPO" -b "$KERNEL_BRANCH" kernel
         cd kernel
+        git cherry-pick 12cb55823302c751c044831e6fe1d082d546008e
         echo "KERNEL_DIR=$(pwd)" >> $GITHUB_ENV
 
     - name: Clone AnyKernel3
