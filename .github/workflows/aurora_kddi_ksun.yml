@@ -57,7 +57,8 @@ jobs:
         cd $KERNEL_DIR
         curl -L "$CLANG_URL" -o clang.tar.zst
         mkdir -p clang
-        tar -xf clang.tar.zst -C clang --strip-components=1
+        tar -xf clang.tar.zst -C clang
+        ls
         echo "CLANG_DIR=$KERNEL_DIR/clang" >> $GITHUB_ENV
         
     - name: Set up KSUN
