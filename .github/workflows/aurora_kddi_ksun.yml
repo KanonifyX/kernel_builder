@@ -14,7 +14,7 @@ jobs:
       KERNEL_VER: E.N.D
       KERNEL_URL: https://github.com/Sorayukii/stardust_kernel_sony_sdm845
       KERNEL_BRANCH: new
-      CLANG_URL: https://github.com/PurrrsLitterbox/LLVM-stable/releases/download/llvmorg-22.1.0-rc2/clang.tar.zst
+      CLANG_URL: https://gitlab.com/Sorayukii/aosp-clang.git
       CLANG_BRANCH: 17
       KSU_URL: https://raw.githubusercontent.com/Sorayukii/KernelSU-Next/stable/kernel/setup.sh
       KSU_BRANCH: hookless
@@ -55,10 +55,7 @@ jobs:
     - name: Clone clang
       run: |
         cd $KERNEL_DIR
-        curl -L "$CLANG_URL" -o clang.tar.zst
-        mkdir -p clang
-        tar -xf clang.tar.zst -C clang
-        ls
+        git clone --depth=1 "$CLANG_URL" -b 17 clang
         echo "CLANG_DIR=$KERNEL_DIR/clang" >> $GITHUB_ENV
         
     - name: Set up KSUN
