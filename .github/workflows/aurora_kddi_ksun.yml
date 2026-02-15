@@ -130,7 +130,7 @@ jobs:
         mkdir -p "$OUT_DIR"
 
         make O="$OUT_DIR" ARCH=arm64 "$CONFIG_NAME"
-        make O="$OUT_DIR" ARCH=arm64 \
+        make -j$(nproc --all) O="$OUT_DIR" ARCH=arm64 \
           CC=clang LD=ld.lld AR=llvm-ar AS=llvm-as NM=llvm-nm \
           OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip \
           CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
