@@ -33,8 +33,7 @@ jobs:
           gcc-arm-linux-gnueabi software-properties-common build-essential \
           libarchive-tools gcc-aarch64-linux-gnu libssl-dev libffi-dev \
           libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev \
-          libsqlite3-dev make gcc pigz python3 cpio lld fastfetch \
-          fastfetch
+          libsqlite3-dev make gcc pigz python3 cpio lld fastfetch
 
     - name: Setup github account
       run: |
@@ -131,7 +130,7 @@ jobs:
         mkdir -p "$OUT_DIR"
 
         make O="$OUT_DIR" ARCH=arm64 "$CONFIG_NAME"
-        make -j$(nproc --all) O="$OUT_DIR" ARCH=arm64 \
+        make O="$OUT_DIR" ARCH=arm64 \
           CC=clang LD=ld.lld AR=llvm-ar AS=llvm-as NM=llvm-nm \
           OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip \
           CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
