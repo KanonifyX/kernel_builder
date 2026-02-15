@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     env:
       CODENAME: aurora_kddi
@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - name: Checkout workflow repo
-      uses: actions/checkout@v6
+      uses: actions/checkout@v4
 
     - name: Install dependencies
       run: |
@@ -33,7 +33,8 @@ jobs:
           gcc-arm-linux-gnueabi software-properties-common build-essential \
           libarchive-tools gcc-aarch64-linux-gnu libssl-dev libffi-dev \
           libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev \
-          libsqlite3-dev make gcc pigz python3 cpio lld
+          libsqlite3-dev make gcc pigz python3 cpio lld fastfetch \
+          fastfetch
 
     - name: Setup github account
       run: |
@@ -133,7 +134,8 @@ jobs:
         make -j$(nproc --all) O="$OUT_DIR" ARCH=arm64 \
           CC=clang LD=ld.lld AR=llvm-ar AS=llvm-as NM=llvm-nm \
           OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip \
-          CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- >> "$LOG_FILE" 2>&1
+          CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+          2>&1 | tee -a "$LOG_FILE"
 
         BUILD_RESULT=${PIPESTATUS[0]}
 
