@@ -13,7 +13,7 @@ jobs:
       CHAT_ID: ${{ secrets.CHAT_ID }}
       KERNEL_VER: E.N.D
       KERNEL_URL: https://github.com/Sorayukii/stardust_kernel_sony_sdm845
-      KERNEL_BRANCH: nomount
+      KERNEL_BRANCH: master
       CLANG_URL: https://github.com/PurrrsLitterbox/LLVM-stable/releases/download/llvmorg-22.1.0-rc2/clang.tar.zst
       CLANG_BRANCH: 17
       KSU_URL: https://raw.githubusercontent.com/Sorayukii/KernelSU-Next/stable/kernel/setup.sh
