@@ -11,7 +11,7 @@ jobs:
       CODENAME: aurora_kddi
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       CHAT_ID: ${{ secrets.CHAT_ID }}
-      KERNEL_VER: E.N.D
+      KERNEL_VER: I.V.Y
       KERNEL_URL: https://github.com/Sorayukii/stardust_kernel_sony_sdm845
       KERNEL_BRANCH: master
       CLANG_URL: https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r536225.tar.gz
